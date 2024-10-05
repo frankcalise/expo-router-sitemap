@@ -1,7 +1,21 @@
 {
   "name": "expo-router-sitemap",
-  "module": "index.ts",
-  "type": "module",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "expo-router-sitemap": "dist/index.js"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/frankcalise/expo-router-sitemap#readme",
+  "repository": "https://github.com/frankcalise/expo-router-sitemap",
+  "bugs": "https://github.com/frankcalise/expo-router-sitemap/issues",
+  "author": "Frank Calise <fcalise@gmail.com>",
+  "scripts": {
+    "ci:publish": "bun run --bun semantic-release",
+    "build": "bun run build.mjs",
+    "prepublishOnly": "bun run build"
+  },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
@@ -10,6 +24,9 @@
     "bun-plugin-dts": "^0.2.3",
     "semantic-release": "^24.1.2"
   },
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
