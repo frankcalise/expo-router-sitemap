@@ -34,7 +34,7 @@ async function traverseDir(dir: string, baseUrl = "") {
     const fullPath = join(dir, entry.name)
     if (entry.isDirectory()) {
       await traverseDir(fullPath, join(baseUrl, entry.name))
-    } else if (entry.isFile() && entry.name.endsWith(".tsx")) {
+    } else if (entry.isFile() && (entry.name.endsWith(".tsx") || entry.name.endsWith(".js"))) {
       const urlPath = convertPathToUrl(fullPath)
       if (!pathMap.has(urlPath)) {
         pathMap.set(urlPath, [])
@@ -50,9 +50,9 @@ function convertPathToUrl(filePath: string): string {
   // Remove segments within parentheses
   url = url.replace(/\/\([^)]*\)/g, "")
 
-  // Replace index.tsx with /, and remove file extensions
-  url = url.replace(/\/index\.tsx$/, "/")
-  url = url.replace(/\.(tsx)$/, "")
+  // Replace index.tsx (or index.js) with /, and remove file extensions
+  url = url.replace(/\/index\.(tsx|js)$/, "/")
+  url = url.replace(/\.(tsx|js)$/, "")
 
   return url
 }
